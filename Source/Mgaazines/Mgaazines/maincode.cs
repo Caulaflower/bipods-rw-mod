@@ -255,13 +255,14 @@ namespace Mgaazines
 			Add_and_Change_LMGs();
 			Add_and_Change_DMRs();
 			Add_and_Change_ATRs();
+			Add_and_Change_Saws();
 		}
 		public static void Add_and_Change_ATRs()
 		{
 			List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == "Bipod_ATR") ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(VerbBipodShoot)) ?? false));
 			foreach (ThingDef def in defs)
 			{
-				Log.Message("adding bipod (ATR) to: " + def.defName);
+				Log.Message("adding bipod (ATR) to: " + def.defName.Colorize(Color.yellow));
 				if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
 				{
 					var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
@@ -277,7 +278,7 @@ namespace Mgaazines
 						//Log.Message("5");
 						def.Verbs.Add(dar);
 						//Log.Message("6");
-						Log.Message("sucessfully added bipod (ATR) to: " + def.label);
+						Log.Message("sucessfully added bipod (ATR) to: " + def.label.Colorize(Color.yellow));
 					}
 					else
 					{
@@ -302,7 +303,7 @@ namespace Mgaazines
 			List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == "Bipod_DMR") ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(VerbBipodShoot)) ?? false));
 			foreach (ThingDef def in defs)
 			{
-				Log.Message("adding bipod (DMR) to: " + def.defName);
+				Log.Message("adding bipod (DMR) to: " + def.defName.Colorize(Color.green));
 				if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
 				{
 					var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
@@ -318,7 +319,7 @@ namespace Mgaazines
 						//Log.Message("5");
 						def.Verbs.Add(dar);
 						//Log.Message("6");
-						Log.Message("sucessfully added bipod (DMR) to: " + def.label);
+						Log.Message("sucessfully added bipod (DMR) to: " + def.label.Colorize(Color.green));
 					}
 					else
 					{
@@ -343,7 +344,7 @@ namespace Mgaazines
 			List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == "Bipod_LMG") ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(VerbBipodShoot)) ?? false));
 			foreach (ThingDef def in defs)
 			{
-				Log.Message("adding bipod to: " + def.label);
+				Log.Message("adding bipod to: " + def.label.Colorize(Color.blue));
 				if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
 				{
 					var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
@@ -359,7 +360,7 @@ namespace Mgaazines
 						//Log.Message("5");
 						def.Verbs.Add(dar);
 						//Log.Message("6");
-						Log.Message("sucessfully added bipod (LMG) to: " + def.label);
+						Log.Message("sucessfully added bipod (LMG) to: " + def.label.Colorize(Color.blue));
 					}
 					else
 					{
@@ -384,7 +385,7 @@ namespace Mgaazines
 			List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == "Bipod_SAW") ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(VerbBipodShoot)) ?? false));
 			foreach (ThingDef def in defs)
 			{
-				Log.Message("adding bipod to: " + def.label);
+				Log.Message("adding bipod to: " + def.label.Colorize(Color.cyan));
 				if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
 				{
 					var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
@@ -400,7 +401,7 @@ namespace Mgaazines
 						//Log.Message("5");
 						def.Verbs.Add(dar);
 						//Log.Message("6");
-						Log.Message("sucessfully added bipod (SAW) to: " + def.label);
+						Log.Message("sucessfully added bipod (SAW) to: " + def.label.Colorize(Color.cyan));
 					}
 					else
 					{

@@ -4,6 +4,7 @@
 
     <!--Tag stats are:
         Bipod_LMG: additional range - 2 tiles, ticks to set up - 420 ticks (7s), recoil mult without bipod set up - 1.5, with it set up - 0.9, warmup penalty mult without bipod set up - 1.5, warmup multiplier with bipod set up - 0.85
+        Bipod_SAW: additional range - 4 tiles, ticks to set up - 240 ticks (4s), recoil mult without bipod set up - 1.2, with it set up - 0.9, warmup penalty mult without bipod set up - 1.2, warmup multiplier with bipod set up - 0.9
         Bipod_DMR: additional range - 15 tiles, ticks to set up - 240 ticks (4s), recoil mult without bipod set up - 1, with it set up - 0.7, warmup penalty mult without bipod set up - 1, warmup multiplier with bipod set up - 0.76
         Bipod_ATR: additional range - 0 tiles, ticks to set up - 540 ticks (9s), recoil mult without bipod set up - 2.5 with it set up - 1, warmup penalty mult without bipod set up - 2.1, warmup multiplier with bipod set up - 0.92
     
@@ -159,9 +160,6 @@
                 <li Class="PatchOperationAdd">
                     <xpath>
                     /Defs/ThingDef[
-                    defName = "VWE_Gun_AntiMaterialRifle" or
-                    defName = "VWE_Gun_MarksmanRifle" or
-                    defName = "VWE_Gun_ChargeSniperRifle" or
                     defName = "VWE_Gun_ChargeLMG"]/weaponTags
                     </xpath>
                     <value>
