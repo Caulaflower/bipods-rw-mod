@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+
+			<li Class="CombatExtended.PatchOperationFindMod">
+				<modName>Combat Extended Guns</modName>
+			</li>
+            <!--<li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_TacFifty"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_TacFifty"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_ATR</li>
+                </value>
+            </li>
+            <!--<li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_PTRS"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_PTRS"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_ATR</li>
+                </value>
+            </li>
+             <!--<li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_MSixty"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_MSixty"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_LMG</li>
+                </value>
+            </li>
+            <!--<li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_RPD"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_RPD"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_SAW</li>
+                </value>
+            </li>
+            <!--<li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_PKM"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_PKM"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_LMG</li>
+                </value>
+            </li>
+            <!-- <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_ChargeLMG"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_ChargeLMG"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_LMG</li>
+                </value>
+            </li>
+            <!--<li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="CE_Gun_ChargeSniperRifle"]/verbs/li/verbClass</xpath>
+                <value><verbClass>Mgaazines.VerbBipod_LMGShoot</verbClass></value>
+            </li>-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="CE_Gun_ChargeSniperRifle"]/weaponTags</xpath>
+                <value>
+                    <li>Bipod_DMR</li>
+                </value>
+            </li>
+
+
+            
+
+
+
+            
+            
+        </operations>
+</Operation>
+</Patch>

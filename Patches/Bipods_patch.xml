@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+    <!--Tag stats are:
+        Bipod_LMG: additional range - 2 tiles, ticks to set up - 420 ticks (7s), recoil mult without bipod set up - 1.5, with it set up - 0.9, warmup penalty mult without bipod set up - 1.5, warmup multiplier with bipod set up - 0.85
+        Bipod_DMR: additional range - 15 tiles, ticks to set up - 240 ticks (4s), recoil mult without bipod set up - 1, with it set up - 0.7, warmup penalty mult without bipod set up - 1, warmup multiplier with bipod set up - 0.76
+        Bipod_ATR: additional range - 0 tiles, ticks to set up - 540 ticks (9s), recoil mult without bipod set up - 2.5 with it set up - 1, warmup penalty mult without bipod set up - 2.1, warmup multiplier with bipod set up - 0.92
+    
+    -->
+
+    <!--Gun Nut:...-->
+
+    <!--Gun Nut - Chapter #1-->
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Gun Nut - Chapter #1</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "GN_RSevenHundred" or
+                    defName = "GN_BullpupPKP"]/weaponTags
+                    </xpath>
+                    <value>
+                        <li>Bipod_LMG</li>
+                    </value>
+                </li>
+            </operations>    
+        </match>
+    </Operation>
+
+    <!--Gun Nut - Chapter #2-->
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Gun Nut - Chapter #2</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "GN_GMSix" or
+                    defName = "GN_NGFive"]/weaponTags
+                    </xpath>
+                    <value>
+                        <li>Bipod_LMG</li>
+                    </value>
+                </li>
+            </operations>    
+        </match>
+    </Operation>
+
+    <!--Gun Nut - Community Pack-->
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Gun Nut - Community Pack</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "GN_SRTwentyFive" or
+                    defName = "GN_MGThree" or
+                    defName = "GN_M240B"]/weaponTags
+                    </xpath>
+                    <value>
+                        <li>Bipod_LMG</li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "GN_SRTwentyFive"]/weaponTags
+                    </xpath>
+                    <value>
+                        <li>Bipod_DMR</li>
+                    </value>
+                </li>
+            </operations>    
+        </match>
+    </Operation>
+
+    <!--Gun Nut - SIG Sauer NGSW-->
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Gun Nut - SIG Sauer NGSW</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "GN_68MG" or
+                    defName = "GN_68MG_C" or
+                    defName = "GN_338MG" or
+                    defName = "GN_338MG_C"]/weaponTags
+                    </xpath>
+                    <value>
+                        <li>Bipod_LMG</li>
+                    </value>
+                </li>
+            </operations>    
+        </match>
+    </Operation>
+
+    <!--CE Guns +-->
+    <!-- imo, guns like minimi should count as LMGs not saws when it comes to stats-->
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Combat Extended Guns +</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "CE_Gun_FNMinimi"]/weaponTags
+                    </xpath>
+                    <value>
+                    <li>Bipod_LMG</li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "CE_Gun_BrenLMG" or
+                    defName = "CE_Gun_RPKSixteen"]/weaponTags
+                    </xpath>
+                    <value>
+                    <li>Bipod_SAW</li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "CE_Gun_MThirtyNineEMR"]/weaponTags
+                    </xpath>
+                    <value>
+                    <li>Bipod_DMR</li>
+                    </value>
+                </li>
+            </operations>    
+        </match>
+    </Operation>
+
+    <!--Vanilla Weapons Expanded-->
+
+        <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Weapons Expanded</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "VWE_Gun_AntiMaterialRifle" or
+                    defName = "VWE_Gun_MarksmanRifle" or
+                    defName = "VWE_Gun_ChargeSniperRifle" or
+                    defName = "VWE_Gun_ChargeLMG"]/weaponTags
+                    </xpath>
+                    <value>
+                    <li>Bipod_LMG</li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "VWE_Gun_AntiMaterialRifle"]/weaponTags
+                    </xpath>
+                    <value>
+                    <li>Bipod_ATR</li>
+                    </value>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>
+                    /Defs/ThingDef[
+                    defName = "VWE_Gun_MarksmanRifle" or
+                    defName = "VWE_Gun_ChargeSniperRifle"]/weaponTags
+                    </xpath>
+                    <value>
+                    <li>Bipod_DMR</li>
+                    </value>
+                </li>
+            </operations>    
+        </match>
+    </Operation>
+
+
+</Patch>

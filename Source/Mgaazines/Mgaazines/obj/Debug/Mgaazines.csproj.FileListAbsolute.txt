@@ -1,0 +1,11 @@
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\Source\Mgaazines\Mgaazines\obj\Debug\Mgaazines.csprojAssemblyReference.cache
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\Assemblies\Mgaazines.dll
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\Assemblies\Mgaazines.pdb
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\Source\Mgaazines\Mgaazines\obj\Debug\Mgaazines.dll
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\Source\Mgaazines\Mgaazines\obj\Debug\Mgaazines.pdb
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\1.3\Mgaazines.dll
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\1.3\Mgaazines.pdb
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\1.3\Assemblies\Mgaazines.dll
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\1.3\Assemblies\Mgaazines.pdb
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\1.2\Assemblies\Mgaazines.dll
+F:\Steam\steamapps\common\RimWorld\Mods\ABiped\1.2\Assemblies\Mgaazines.pdb
