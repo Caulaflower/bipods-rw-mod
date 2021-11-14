@@ -14,11 +14,11 @@ using UnityEngine;
 namespace Mgaazines
 {
 	[DefOf]
-	public class BipodDefsOfs : DefOf 
+	public class BipodDefsOfs : DefOf
 	{
 		public static JobDef setupbipodjobdef;
 	}
-	
+
 	public class BipedProps : CompProperties
 	{
 
@@ -34,8 +34,8 @@ namespace Mgaazines
 		public float warmuppenalty = 2f;
 
 		public int TicksToSetUp = 60;
-	
-		
+
+
 
 		public BipedProps()
 		{
@@ -82,7 +82,7 @@ namespace Mgaazines
 				};
 
 			}
-			
+
 		}
 		public VerbBipodShoot verbbipod
 		{
@@ -94,7 +94,7 @@ namespace Mgaazines
 		}
 		public override void Notify_Unequipped(Pawn pawn)
 		{
-			
+
 			IsSetUpRn = false;
 		}
 		public override void Notify_Equipped(Pawn pawn)
@@ -108,18 +108,18 @@ namespace Mgaazines
 		public void SetUpStart(Pawn pawn = null)
 		{
 			//Log.Message("der panzerwagen");
-			if(pawn != null)
+			if (pawn != null)
 			{
 				IntVec3 pawnpos = pawn.Position;
 				List<IntVec3> pawnsurs = pawn.CellsAdjacent8WayAndInside().ToList();
 				pawnsurs.Remove(pawnpos);
 				var surthings = new List<Thing>();
-				foreach(IntVec3 cell in pawnsurs)
+				foreach (IntVec3 cell in pawnsurs)
 				{
 					surthings.AddRange(cell.GetThingList(Find.CurrentMap));
 				}
 				pawn.jobs.StopAll();
-				pawn.jobs.StartJob(new Job { def = BipodDefsOfs.setupbipodjobdef, targetA = this.parent}, JobCondition.InterruptForced);
+				pawn.jobs.StartJob(new Job { def = BipodDefsOfs.setupbipodjobdef, targetA = this.parent }, JobCondition.InterruptForced);
 			}
 
 		}
@@ -130,8 +130,8 @@ namespace Mgaazines
 	{
 		public override void WarmupComplete()
 		{
-			
-			
+
+
 			base.WarmupComplete();
 		}
 		public int ticks;
@@ -159,7 +159,7 @@ namespace Mgaazines
 		public override void VerbTickCE()
 		{
 			++ticks;
-			if(ticks == 2)
+			if (ticks == 2)
 			{
 				if (!(CasterPawn.ParentHolder is Map))
 				{
@@ -208,14 +208,14 @@ namespace Mgaazines
 				}
 				ticks = 0;
 			}
-		
-			
+
+
 			base.VerbTickCE();
 		}
 	}
 
 
-	
+
 	public class SetUpBipod : JobDriver
 	{
 		private ThingWithComps weapon
@@ -244,7 +244,7 @@ namespace Mgaazines
 			yield return Toils_General.Wait(Bipod.Props.TicksToSetUp);
 			yield return Toils_General.Do(delegate { Bipod.IsSetUpRn = true; });
 
-			
+
 		}
 	}
 	[StaticConstructorOnStartup]
@@ -252,10 +252,7 @@ namespace Mgaazines
 	{
 		static AddChanger()
 		{
-			Add_and_Change_LMGs();
-			Add_and_Change_DMRs();
-			Add_and_Change_ATRs();
-			Add_and_Change_Saws();
+			Add_and_change_all();
 		}
 		public static void Add_and_Change_ATRs()
 		{
@@ -421,6 +418,49 @@ namespace Mgaazines
 
 			}
 		}
+
+		public static void Add_and_change_all()
+		{
+			foreach (BipodCategoryDef bipod_def in DefDatabase<BipodCategoryDef>.AllDefs)
+			{
+				List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == bipod_def.bipod_id) ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(VerbBipodShoot)) ?? false));
+				foreach (ThingDef def in defs)
+				{
+					Log.Message("adding bipod (" + bipod_def.label + ") to: " + def.defName.Colorize(Color.cyan));
+					if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
+					{
+						var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
+
+						if (dar != null)
+						{
+							//Log.Message("2");
+							dar.verbClass = typeof(VerbBipodShoot);
+							//Log.Message("3");
+							def.Verbs.Clear();
+							//Log.Message("4");
+							def.comps.Add(new BipedProps { additionalrange = bipod_def.ad_Range, recoilmulton = bipod_def.recoil_mult_setup, recoilmultoff = bipod_def.recoil_mult_NOT_setup, TicksToSetUp = bipod_def.setuptime, warmupmult = bipod_def.warmup_mult_setup, warmuppenalty = bipod_def.warmup_mult_NOT_setup });
+							//Log.Message("5");
+							def.Verbs.Add(dar);
+							//Log.Message("6");
+							Log.Message("sucessfully added bipod (" + bipod_def.label + ") to: " + def.label.Colorize(bipod_def.log_color));
+						}
+						else
+						{
+							Log.Message("adding bipod failed in " + def.label.Colorize(Color.red) + ". It appears to have no VerbShootCE in verbs");
+						}
+					}
+					else
+					{
+						Log.Message("adding bipod failed in " + def.label.Colorize(Color.red) + ". It appears to have no VerbShootCE in verbs. It's verbs are following:");
+						foreach (VerbProperties verbp in def.Verbs)
+						{
+							Log.Message(verbp.verbClass.Name.Colorize(Color.magenta));
+						}
+
+					}
+				}
+			}
+		}
+
 	}
-	
 }

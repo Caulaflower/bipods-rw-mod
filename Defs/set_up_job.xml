@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<JobDef>
+		<defName>setupbipodjobdef</defName>
+		<driverClass>Mgaazines.SetUpBipod</driverClass>
+		<reportString>Setting up a bipod.</reportString>
+		<casualInterruptible>true</casualInterruptible>
+	</JobDef>
+</Defs>
