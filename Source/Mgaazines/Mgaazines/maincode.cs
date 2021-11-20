@@ -63,25 +63,34 @@ namespace Mgaazines
 		}
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
-			if (!ShouldSetUp)
+			if(this.ParentHolder is Pawn_EquipmentTracker)
 			{
-				yield return new Command_Action
+				Pawn dad = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
+				if (dad.Drafted)
 				{
-					action = delegate { ShouldSetUp = true; },
-					defaultLabel = "Set up bipod",
-					icon = ContentFinder<Texture2D>.Get("Tymon/Bipod/open_bipod")
-				};
-			}
-			else
-			{
-				yield return new Command_Action
-				{
-					action = delegate { ShouldSetUp = false; },
-					defaultLabel = "Close bipod",
-					icon = ContentFinder<Texture2D>.Get("Tymon/Bipod/closed_bipod")
-				};
+					if (!ShouldSetUp)
+					{
+						yield return new Command_Action
+						{
+							action = delegate { ShouldSetUp = true; },
+							defaultLabel = "Set up bipod",
+							icon = ContentFinder<Texture2D>.Get("Tymon/Bipod/open_bipod")
+						};
+					}
+					else
+					{
+						yield return new Command_Action
+						{
+							action = delegate { ShouldSetUp = false; },
+							defaultLabel = "Close bipod",
+							icon = ContentFinder<Texture2D>.Get("Tymon/Bipod/closed_bipod")
+						};
 
+					}
+				}
+				
 			}
+			
 
 		}
 		public VerbBipodShoot verbbipod
@@ -100,14 +109,13 @@ namespace Mgaazines
 		public override void Notify_Equipped(Pawn pawn)
 		{
 			IsSetUpRn = false;
-			verbbipod.WereChangesApplied1 = true;
-			verbbipod.WereChangesApplied2 = true;
+			verbbipod.WereChangesApplied1 =	false;
+			verbbipod.WereChangesApplied2 = false;
 		}
 
 		public BipedProps Props => (BipedProps)this.props;
 		public void SetUpStart(Pawn pawn = null)
 		{
-			//Log.Message("der panzerwagen");
 			if (pawn != null)
 			{
 				IntVec3 pawnpos = pawn.Position;
@@ -128,12 +136,6 @@ namespace Mgaazines
 
 	public class VerbBipodShoot : Verb_ShootCE
 	{
-		public override void WarmupComplete()
-		{
-
-
-			base.WarmupComplete();
-		}
 		public int ticks;
 
 		public bool WereChangesApplied1 = false;
@@ -158,8 +160,7 @@ namespace Mgaazines
 
 		public override void VerbTickCE()
 		{
-			++ticks;
-			if (ticks == 2)
+			if (CasterPawn.Drafted)
 			{
 				if (!(CasterPawn.ParentHolder is Map))
 				{
@@ -196,6 +197,7 @@ namespace Mgaazines
 					}
 					if (!CasterPawn.pather.Moving && EquipmentSource.TryGetComp<bipodcomp>().ShouldSetUp && CasterPawn.CurJob.def != BipodDefsOfs.setupbipodjobdef && !bipodcomp.IsSetUpRn)
 					{
+						Log.Message("setting up");
 						EquipmentSource.TryGetComp<bipodcomp>().SetUpStart(CasterPawn);
 					}
 					if (CasterPawn.pather.Moving)
@@ -203,11 +205,11 @@ namespace Mgaazines
 						WereChangesApplied1 = false;
 						WereChangesApplied2 = false;
 						EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn = false;
-						this.verbProps = EquipmentSource.def.Verbs.Find(tt33 => tt33.verbClass == typeof(VerbBipodShoot));
+						this.verbProps = EquipmentSource.def.Verbs.Find(tt33 => tt33.verbClass == typeof(VerbBipodShoot)).MemberwiseClone();
 					}
 				}
-				ticks = 0;
 			}
+				
 
 
 			base.VerbTickCE();
